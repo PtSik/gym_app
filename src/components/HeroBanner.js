@@ -43,8 +43,20 @@ const HeroBanner = () => {
           display: { lg: "block", xs: "none" },
         }}
         fontSize="200px"
+        mb={-12}
       >
         TREN
+      </Typography>
+      <Typography
+        fontWeight={600}
+        color="#ff2626"
+        sx={{
+          opacity: 0.1,
+          display: { lg: "block", xs: "none" },
+        }}
+        fontSize="200px"
+      >
+        TWINS
       </Typography>
       <img src={HeroBannerImage} alt="banner" className="hero-banner-img" />
     </Box>
