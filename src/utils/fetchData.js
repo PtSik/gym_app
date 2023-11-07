@@ -1,7 +1,7 @@
 export const exerciseOptions = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "c5c8f38af9msh676d85aad39a8c0p10dce1jsn60d780fe7228",
+    "X-RapidAPI-Key": "6450f87b88msh834f1f637b479cbp17d15djsn306fc9a2668b",
     "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
   },
 };
