@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import HeroBannerImage from "../assets/images/tren.png";
 
@@ -13,7 +13,7 @@ const HeroBanner = () => {
       position="relative"
       p="20px"
     >
-      <Typography color="#FF2625" fontWeight="600" fontSize="32px">
+      <Typography color="#FF2625" fontWeight="600" fontSize="32px" mt="-140px">
         Power Club
       </Typography>
       <Typography
@@ -27,14 +27,25 @@ const HeroBanner = () => {
       <Typography fontSize="22px" lineHeight="35px" mb={4}>
         Sprawdź najbardziej efektywne ćwiczenia
       </Typography>
-      <Button
-        variant="contained"
-        color="error"
-        href="#exercises"
-        sx={{ backgroundColor: "#ff2625", padding: "10px" }}
-      >
-        Eksploruj ćwiczenia
-      </Button>
+      <Stack>
+        <a
+          href="#exercises"
+          style={{
+            marginTop: "45px",
+            textDecoration: "none",
+            width: "200px",
+            textAlign: "center",
+            background: "#FF2625",
+            padding: "14px",
+            fontSize: "22px",
+            textTransform: "none",
+            color: "white",
+            borderRadius: "4px",
+          }}
+        >
+          Eksploruj Ćwiczenia
+        </a>
+      </Stack>
       <Typography
         fontWeight={600}
         color="#ff2626"
