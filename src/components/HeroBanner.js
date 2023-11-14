@@ -13,7 +13,7 @@ const HeroBanner = () => {
       position="relative"
       p="20px"
     >
-      <Typography color="#FF2625" fontWeight="600" fontSize="32px" mt="-140px">
+      <Typography color="#FF2625" fontWeight="600" fontSize="32px">
         Power Club
       </Typography>
       <Typography
@@ -53,21 +53,10 @@ const HeroBanner = () => {
           opacity: 0.1,
           display: { lg: "block", xs: "none" },
         }}
-        fontSize="200px"
-        mb={-12}
+        fontSize="190px"
+        mt={9}
       >
-        TREN
-      </Typography>
-      <Typography
-        fontWeight={600}
-        color="#ff2626"
-        sx={{
-          opacity: 0.1,
-          display: { lg: "block", xs: "none" },
-        }}
-        fontSize="200px"
-      >
-        TWINS
+        TREN TWINS
       </Typography>
       <img src={HeroBannerImage} alt="banner" className="hero-banner-img" />
     </Box>
