@@ -48,8 +48,8 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         mb="50px"
         textAlign="center"
       >
-        Sprawdzone Ćwiczenia <br />
-        Które Powinieneś Znać
+        Najlepsze <span style={{ color: "#ff2625" }}>Ćwiczenia</span> <br />
+        dla Ciebie
       </Typography>
       <Box position="relative" mb="72px">
         <TextField
@@ -62,7 +62,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           height="76px"
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          placeholder="Szukaj Ćwiczeń"
+          placeholder="np. Lateral Pulldown"
           type="text"
         />
         <Button

@@ -2,8 +2,8 @@ import React from "react";
 import { Stack, Button, Typography } from "@mui/material";
 
 import BodyPartImage from "../assets/icons/body-part.png";
-import TargetImage from "../assets/icons/body-part.png";
-import EquipmentImage from "../assets/icons/body-part.png";
+import TargetImage from "../assets/icons/target.png";
+import EquipmentImage from "../assets/icons/equipment.png";
 
 const Detail = ({ exerciseDetail }) => {
   const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
@@ -30,10 +30,16 @@ const Detail = ({ exerciseDetail }) => {
     >
       <img src={gifUrl} alt={name} loading="lazy" className="detail-image" />
       <Stack sx={{ gap: { lg: "35px", xs: "20px" } }}>
-        <Typography variant="h3">{name}</Typography>
+        <Typography variant="h3" ><span style={{  textTransform: "capitalize" }}>
+          {name}
+        </span></Typography>
         <Typography variant="h6">
-          Regularne ćwiczenia pomagają utrzymać forme. {name} {` `}
-          jest jednym z najlepszych ćwiczeń do aktywacji {target}. Nie tylko
+          Regularne ćwiczenia pomagają utrzymać forme.  <span style={{ color: "#ff2625", textTransform: "capitalize" }}>
+          {name}
+        </span> {` `}
+          jest jednym z najlepszych ćwiczeń do aktywacji  <span style={{ textTransform: "capitalize" }}>
+          {target}
+        </span>. Nie tylko
           poprawia nastrój, ale także zwiększa poziom energii.
         </Typography>
         {extraDetail.map((item) => (

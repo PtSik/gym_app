@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Stack, Typography } from "@mui/material";
 
-import Icon from "../assets/icons/gym.png";
-
 const BodyPart = ({ item, setBodyPart, bodyPart }) => {
+  const [icon, setIcon] = useState(null);
+
+  useEffect(() => {
+    const loadIcon = async () => {
+      try {
+        // Dynamiczne ładowanie obrazu na podstawie nazwy części ciała
+        const iconModule = await import(`../assets/icons/${item.toLowerCase()}.png`);
+        setIcon(iconModule.default);
+      } catch (error) {
+        console.error("Błąd ładowania ikony:", error);
+      }
+    };
+
+    loadIcon();
+  }, [item]);
+
+  if (!icon) {
+    return null; // Możesz obsłużyć sytuację, gdy obraz nie zostanie załadowany
+  }
+
   return (
     <Stack
       type="button"
@@ -24,7 +42,7 @@ const BodyPart = ({ item, setBodyPart, bodyPart }) => {
         window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
       }}
     >
-      <img src={Icon} alt="dumbell" style={{ width: "40px", height: "40px" }} />
+      <img src={icon} alt={item} style={{ width: "80px", height: "80px" }} />
       <Typography
         fontSize="24px"
         fontWeight="bold"
