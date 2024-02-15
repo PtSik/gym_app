@@ -41,9 +41,18 @@ const Navbar = () => {
         >
           Ćwiczenia
         </a>
+        <Link
+          to="/favorites"
+          style={{
+            textDecoration: "none",
+            color: "#3A1212",
+          }}
+        >
+          Ulubione
+        </Link>
       </Stack>
       <div style={{ marginLeft: "auto" }}>
-        <Link to="/">
+        <Link to="/login">
           <img
             src={Avatar}
             alt="avatar"
