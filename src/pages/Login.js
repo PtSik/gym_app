@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-
-import './Login.css';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { Box, Button, TextField, Typography, Stack } from '@mui/material';
 
 export const Login = ({ user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUpActive, setIsSignUpActive] = useState(false); // Zmienione na false
+  const [isSignUpActive, setIsSignUpActive] = useState(false);
   const navigate = useNavigate();
 
   const handleMethodChange = () => {
@@ -26,7 +21,7 @@ export const Login = ({ user }) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        console.error(error.code, error.message);
       });
   };
 
@@ -37,7 +32,7 @@ export const Login = ({ user }) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        console.error(error.code, error.message);
       });
   };
 
@@ -45,79 +40,62 @@ export const Login = ({ user }) => {
     signOut(auth).then(() => {
       navigate("/");
     }).catch((error) => {
-      console.log(error.message);
+      console.error(error.message);
     });
   };
 
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
-
   if (user) {
     return (
-      <section>
-        <p>Jesteś już zalogowany.</p>
-        <button onClick={handleSignOut}>Wyloguj się</button>
-      </section>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Stack spacing={2} alignItems="center">
+          <Typography>Jesteś już zalogowany.</Typography>
+          <Button onClick={handleSignOut} variant="outlined">Wyloguj się</Button>
+        </Stack>
+      </Box>
     );
   }
 
   return (
-    <section>
-      <form>
-        {!isSignUpActive ? (
-          <>
-            <legend>Zaloguj się</legend>
-            <fieldset>
-              <ul>
-                <li>
-                  <label htmlFor="email">Email</label>
-                  <input type="text" id="email" onChange={handleEmailChange} />
-                </li>
-                <li>
-                  <label htmlFor="password">Hasło</label>
-                  <input
-                    type="password"
-                    id="password"
-                    onChange={handlePasswordChange}
-                  />
-                </li>
-              </ul>
-              <button type="button" onClick={handleSignIn}>
-                Zaloguj się
-              </button>
-            </fieldset>
-          </>
-        ) : (
-          <>
-            <legend>Zarejestruj się</legend>
-            <fieldset>
-              <ul>
-                <li>
-                  <label htmlFor="email">Email</label>
-                  <input type="text" id="email" onChange={handleEmailChange} />
-                </li>
-                <li>
-                  <label htmlFor="password">Hasło</label>
-                  <input
-                    type="password"
-                    id="password"
-                    onChange={handlePasswordChange}
-                  />
-                </li>
-              </ul>
-              <button type="button" onClick={handleSignUp}>
-                Zarejestruj się
-              </button>
-            </fieldset>
-          </>
-        )}
-        <button type="button" onClick={handleMethodChange}>
-          {isSignUpActive
-            ? "Masz już konto? Zaloguj się"
-            : "Nie masz konta? Zarejestruj się"}
-        </button>
-      </form>
-    </section>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '90vh', width: '100%' }}>
+      <Box component="form"   sx={{ 
+    '& .MuiTextField-root': { m: 1 }, 
+    p: 3, 
+    boxShadow: 3, 
+    borderRadius: 2, 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center',
+    width: '100%', // Dostosuj do potrzebnej szerokości
+    maxWidth: '500px', // Możesz dostosować maksymalną szerokość do swoich potrzeb
+    mt: 2 // Możesz dostosować margines górny, jeśli jest potrzebny
+  }}>
+        <Typography variant="h5" sx={{ mb: 2 }}>{isSignUpActive ? "Zarejestruj się" : "Zaloguj się"}</Typography>
+        <TextField
+          label="Email"
+          type="email"
+          variant="outlined"
+          required
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <TextField
+          label="Hasło"
+          type="password"
+          variant="outlined"
+          required
+          fullWidth
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button variant="contained" color="primary" onClick={isSignUpActive ? handleSignUp : handleSignIn} sx={{ mt: 2, mb: 2 }}>
+          {isSignUpActive ? "Zarejestruj się" : "Zaloguj się"}
+        </Button>
+        <Button variant="text" onClick={handleMethodChange}>
+          {isSignUpActive ? "Masz już konto? Zaloguj się" : "Nie masz konta? Zarejestruj się"}
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

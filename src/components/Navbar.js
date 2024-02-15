@@ -56,7 +56,7 @@ const Navbar = () => {
           <img
             src={Avatar}
             alt="avatar"
-            style={{ width: "48px", height: "48px", marginRight: "-50px" }}
+            style={{ width: "48px", height: "48px", marginRight:"" }}
           />
         </Link>
       </div>
