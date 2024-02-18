@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 import Logo from "../assets/images/logo2.png";
 import Avatar from "../assets/icons/avatar.png";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleFavoritesClick = () => {
+    if (auth.currentUser) {
+      navigate("/favorites");
+    } else {
+      alert("Musisz być zalogowany, aby zobaczyć ulubione ćwiczenia.");
+    }
+  };
   return (
     <Stack
       direction="row"
@@ -35,28 +46,33 @@ const Navbar = () => {
         >
           Home
         </Link>
-        <a
-          href="#exercises"
-          style={{ textDecoration: "none", color: "#3A1212" }}
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "#3A1212",
+          }}
+          state={{ scrollToExercises: true }}
         >
           Ćwiczenia
-        </a>
-        <Link
-          to="/favorites"
+        </Link>
+        <div
+          onClick={handleFavoritesClick}
           style={{
+            cursor: "pointer", // Dodaje styl wskaźnika, aby wyglądało jak klikalny link
             textDecoration: "none",
             color: "#3A1212",
           }}
         >
           Ulubione
-        </Link>
+        </div>
       </Stack>
       <div style={{ marginLeft: "auto" }}>
         <Link to="/login">
           <img
             src={Avatar}
             alt="avatar"
-            style={{ width: "48px", height: "48px", marginRight:"" }}
+            style={{ width: "48px", height: "48px", marginRight: "" }}
           />
         </Link>
       </div>

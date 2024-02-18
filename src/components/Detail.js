@@ -7,6 +7,8 @@ import { collection, addDoc } from "firebase/firestore";
 import BodyPartImage from "../assets/icons/body-part.png";
 import TargetImage from "../assets/icons/target.png";
 import EquipmentImage from "../assets/icons/equipment.png";
+import { auth } from '../firebase';
+
 
 const Detail = ({ exerciseDetail }) => {
   const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
@@ -28,19 +30,25 @@ const Detail = ({ exerciseDetail }) => {
 
   const addToFavorites = async () => {
     try {
-      await addDoc(collection(db, "favorites"), {
-        bodyPart,
-        gifUrl,
-        name,
-        target,
-        equipment,
-      });
-      alert("Ćwiczenie zostało dodane do ulubionych!");
+      // Upewnij się, że użytkownik jest zalogowany
+      if (auth.currentUser) {
+        const userId = auth.currentUser.uid; // Pobranie ID zalogowanego użytkownika
+  
+        await addDoc(collection(db, "favorites"), {
+          id: exerciseDetail.id, // ID ćwiczenia
+          userId, // ID użytkownika
+        });
+        alert("Ćwiczenie zostało dodane do ulubionych!");
+      } else {
+        alert("Musisz być zalogowany, aby dodać ćwiczenia do ulubionych.");
+      }
     } catch (error) {
       console.error("Błąd przy dodawaniu do ulubionych: ", error);
       alert("Nie udało się dodać ćwiczenia do ulubionych.");
     }
   };
+
+  
 
   return (
     <Stack

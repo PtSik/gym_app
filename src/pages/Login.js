@@ -22,6 +22,7 @@ export const Login = ({ user }) => {
       })
       .catch((error) => {
         console.error(error.code, error.message);
+        alert(`Błąd rejestracji: ${error.message}`);
       });
   };
 
@@ -33,6 +34,7 @@ export const Login = ({ user }) => {
       })
       .catch((error) => {
         console.error(error.code, error.message);
+        alert(`Błąd logowania: ${error.message}`);
       });
   };
 
