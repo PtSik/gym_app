@@ -59,7 +59,7 @@ const Navbar = () => {
         <div
           onClick={handleFavoritesClick}
           style={{
-            cursor: "pointer", // Dodaje styl wskaźnika, aby wyglądało jak klikalny link
+            cursor: "pointer", 
             textDecoration: "none",
             color: "#3A1212",
           }}

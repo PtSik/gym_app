@@ -20,10 +20,10 @@ export const fetchData = async (url, options) => {
     if (!response.ok) {
       throw new Error(`An error occurred: ${response.statusText}`);
     }
-    const text = await response.text(); // Najpierw pobierz tekst odpowiedzi
-    return text ? JSON.parse(text) : {}; // Próba parsowania tekstu jako JSON, jeśli nie jest pusty
+    const text = await response.text(); 
+    return text ? JSON.parse(text) : {}; 
   } catch (error) {
     console.error("Fetching data error:", error);
-    throw error; // Przekazanie błędu do wyższego poziomu obsługi
+    throw error; 
   }
 };

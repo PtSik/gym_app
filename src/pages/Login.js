@@ -67,9 +67,9 @@ export const Login = ({ user }) => {
     display: 'flex', 
     flexDirection: 'column', 
     alignItems: 'center',
-    width: '100%', // Dostosuj do potrzebnej szerokości
-    maxWidth: '500px', // Możesz dostosować maksymalną szerokość do swoich potrzeb
-    mt: 2 // Możesz dostosować margines górny, jeśli jest potrzebny
+    width: '100%', 
+    maxWidth: '500px', 
+    mt: 2 
   }}>
         <Typography variant="h5" sx={{ mb: 2 }}>{isSignUpActive ? "Zarejestruj się" : "Zaloguj się"}</Typography>
         <TextField
