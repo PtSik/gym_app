@@ -30,13 +30,12 @@ const Detail = ({ exerciseDetail }) => {
 
   const addToFavorites = async () => {
     try {
-      // Upewnij się, że użytkownik jest zalogowany
       if (auth.currentUser) {
-        const userId = auth.currentUser.uid; // Pobranie ID zalogowanego użytkownika
+        const userId = auth.currentUser.uid; 
   
         await addDoc(collection(db, "favorites"), {
-          id: exerciseDetail.id, // ID ćwiczenia
-          userId, // ID użytkownika
+          id: exerciseDetail.id, 
+          userId, 
         });
         alert("Ćwiczenie zostało dodane do ulubionych!");
       } else {
