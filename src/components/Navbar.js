@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Stack, Avatar as MUIAvatar } from "@mui/material";
+import {
+  Stack,
+  Avatar as MUIAvatar,
+  Menu,
+  MenuItem,
+  IconButton,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
 import Logo from "../assets/images/logo2.png";
@@ -9,6 +16,27 @@ import DefaultAvatar from "../assets/icons/avatar.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+    handleClose();
+  };
 
   const handleFavoritesClick = () => {
     if (auth.currentUser) {
@@ -17,8 +45,6 @@ const Navbar = () => {
       alert("Musisz być zalogowany, aby zobaczyć ulubione ćwiczenia.");
     }
   };
-
-  const userPhotoURL = auth.currentUser ? auth.currentUser.photoURL : null;
 
   return (
     <Stack
@@ -71,23 +97,43 @@ const Navbar = () => {
         </div>
       </Stack>
       <div style={{ marginLeft: "auto" }}>
-        <Link to="/login">
-          {userPhotoURL ? (
+        {auth.currentUser ? (
+          <>
+            <IconButton onClick={handleClick}>
+              <MUIAvatar
+                src={auth.currentUser.photoURL || DefaultAvatar}
+                alt="avatar"
+                sx={{ width: 58, height: 58, mr: -4.5, mt: -1 }}
+              />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem
+                onClick={() => {
+                  navigate("/profile");
+                  handleClose();
+                }}
+              >
+                Moje konto
+              </MenuItem>
+              <MenuItem onClick={handleSignOut}>Wyloguj</MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <Link to="/login">
             <MUIAvatar
-              src={userPhotoURL}
-              alt="avatar"
-              sx={{ width: 58, height: 58, mr: -3 }}
-              className="rounded-full"
-            />
-          ) : (
-            <img
               src={DefaultAvatar}
               alt="avatar"
-              style={{ width: "48px", height: "48px",}}
-              className="rounded-full"
+              sx={{ width: 58, height: 58, mr: -4 }}
             />
-          )}
-        </Link>
+          </Link>
+        )}
       </div>
     </Stack>
   );

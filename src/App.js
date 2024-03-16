@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ProtectedRoute } from "./utils/protectedRoute";
 import { auth } from "./firebase";
 import Loader from "./components/Loader";
+import UserProfile from "./components/UserProfile";
 
 
 import "./App.css";
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/favorites" element={<ProtectedRoute user={user}><Favorites /></ProtectedRoute>} />
         {/* Przekazanie user jako prop do Login */}
         <Route path="/login" element={<Login user={user} />} />
+        <Route path="/profile" element={<ProtectedRoute user={user}><UserProfile /></ProtectedRoute>} /> 
       </Routes>
     </Box>
   );
