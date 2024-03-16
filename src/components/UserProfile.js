@@ -26,7 +26,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const UserProfile = () => {
-  const [setImage] = useState(null);
   const [newPassword, setNewPassword] = useState("");
   const [oldPassword, setOldPassword] = useState(""); // Dodano dla ponownego uwierzytelnienia
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -34,11 +33,14 @@ const UserProfile = () => {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+  const [displayName, setDisplayName] = useState(
+    auth.currentUser?.displayName || ""
+  ); // Inicjalizacja z obecną nazwą użytkownika
+  const [newDisplayName, setNewDisplayName] = useState("");
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file);
       await uploadImage(file);
     }
   };
@@ -117,19 +119,36 @@ const UserProfile = () => {
     setShowConfirmNewPassword(!showConfirmNewPassword);
   };
 
+  const handleUpdateDisplayName = async () => {
+    try {
+      await updateProfile(auth.currentUser, {
+        displayName: newDisplayName,
+      });
+      alert("Nazwa użytkownika została zaktualizowana.");
+      setDisplayName(newDisplayName); // Aktualizacja wyświetlanej nazwy
+      setNewDisplayName(""); // Reset pola po zmianie nazwy
+    } catch (error) {
+      console.error("Błąd podczas aktualizacji nazwy użytkownika: ", error);
+      alert("Nie udało się zaktualizować nazwy użytkownika.");
+    }
+  };
+
   return (
     <Box
       display="flex"
       flexDirection="column"
       alignItems="center"
       gap={2}
-      mt={4}
+      mt={2}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         Twój Profil
       </Typography>
+      <Typography variant="h4" gutterBottom>
+        {displayName}
+      </Typography>
       <Avatar src={auth.currentUser?.photoURL} sx={{ width: 90, height: 90 }} />
-      <Button variant="contained" component="label" sx={{ mt: 2 }}>
+      <Button variant="contained" component="label">
         Zmień zdjęcie
         <input
           type="file"
@@ -139,11 +158,26 @@ const UserProfile = () => {
         />
       </Button>
       <TextField
+        label="Nowa nazwa użytkownika"
+        type="text"
+        variant="outlined"
+       
+        value={newDisplayName}
+        onChange={(e) => setNewDisplayName(e.target.value)}
+        sx={{ mt: 2 }}
+      />
+      <Button
+        onClick={handleUpdateDisplayName}
+        variant="contained"
+      >
+        Aktualizuj nazwę użytkownika
+      </Button>
+      <TextField
         label="Stare hasło"
         type={showOldPassword ? "text" : "password"}
         value={oldPassword}
         onChange={(e) => setOldPassword(e.target.value)}
-        sx={{ mt: 2 }}
+        sx={{ mt: 4 }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -199,14 +233,14 @@ const UserProfile = () => {
           ),
         }}
       />
-      <Button onClick={handleChangePassword} variant="contained" sx={{ mt: 2 }}>
+      <Button onClick={handleChangePassword} variant="contained" >
         Zmień hasło
       </Button>
       <Button
         onClick={handleOpenConfirmDelete}
         variant="contained"
         color="error"
-        sx={{ mt: 2 }}
+        sx={{ mt: 3, mb: 2 }}
       >
         Usuń konto
       </Button>

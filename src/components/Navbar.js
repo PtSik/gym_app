@@ -6,6 +6,8 @@ import {
   Menu,
   MenuItem,
   IconButton,
+  Typography,
+  Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -52,7 +54,7 @@ const Navbar = () => {
       justifyContent="space-between"
       sx={{
         gap: { sm: "72px", xs: "40px" },
-        mt: { sm: "32px", xs: "20px" },
+        mt: { sm: "22px", xs: "20px" },
         alignItems: "center",
         px: "20px",
       }}
@@ -103,27 +105,55 @@ const Navbar = () => {
               <MUIAvatar
                 src={auth.currentUser.photoURL || DefaultAvatar}
                 alt="avatar"
-                sx={{ width: 58, height: 58, mr: -4.5, mt: -1 }}
+                sx={{ width: 58, height: 58, mr: -8, mt: -1 }}
               />
             </IconButton>
             <Menu
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
-            >
-              <MenuItem
-                onClick={() => {
-                  navigate("/profile");
-                  handleClose();
-                }}
-              >
-                Moje konto
-              </MenuItem>
-              <MenuItem onClick={handleSignOut}>Wyloguj</MenuItem>
-            </Menu>
+  anchorEl={anchorEl}
+  open={open}
+  onClose={handleClose}
+  sx={{
+    "& .MuiPaper-root": {
+      minWidth: "180px", // Zwiększona szerokość menu
+      borderRadius: 2,
+      color: "#000",
+      backgroundColor: "white",
+    },
+  }}
+  MenuListProps={{
+    "aria-labelledby": "basic-button",
+  }}
+>
+  <Typography
+    color="textPrimary"
+    sx={{
+      fontWeight: "bold",
+      color: "#000",
+      textAlign: "center",
+      mt: 1.5,
+      mb: 1.5,
+      fontSize: "1.25rem"
+    }}
+  >
+    {auth.currentUser.displayName}
+  </Typography>
+  {/* Użycie Box do wypośrodkowania przycisku */}
+  <MenuItem
+    onClick={() => {
+      navigate("/profile");
+      handleClose();
+    }}
+    sx={{ justifyContent: 'center' }} // Centrowanie MenuItem
+  >
+    <Box sx={{ textAlign: 'center', width: 'auto' }}>Moje konto</Box>
+  </MenuItem>
+  <MenuItem
+    onClick={handleSignOut}
+    sx={{ justifyContent: 'center' }} // Centrowanie MenuItem
+  >
+    <Box sx={{ textAlign: 'center', width: 'auto' }}>Wyloguj</Box>
+  </MenuItem>
+</Menu>
           </>
         ) : (
           <Link to="/login">

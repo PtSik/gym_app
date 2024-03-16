@@ -4,15 +4,17 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import { Box, Button, TextField, Typography, Stack } from "@mui/material";
 import { signInWithPopup } from "firebase/auth";
-import GoogleIconSVG from '../assets/icons/google-icon.svg'
+import GoogleIconSVG from "../assets/icons/google-icon.svg";
 
 export const Login = ({ user }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [isSignUpActive, setIsSignUpActive] = useState(false);
   const navigate = useNavigate();
 
@@ -29,13 +31,25 @@ export const Login = ({ user }) => {
 
   const handleMethodChange = () => {
     setIsSignUpActive(!isSignUpActive);
+    setUsername("");
   };
 
   const handleSignUp = () => {
-    if (!email || !password) return;
+    if (!email || !password || !username) return;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        navigate("/");
+        updateProfile(auth.currentUser, {
+          displayName: username,
+        })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error(
+              "Błąd przy aktualizacji profilu użytkownika: ",
+              error
+            );
+          });
       })
       .catch((error) => {
         console.error(error.code, error.message);
@@ -115,6 +129,16 @@ export const Login = ({ user }) => {
           {isSignUpActive ? "Zarejestruj się" : "Zaloguj się"}
         </Typography>
         <TextField
+          label="Nazwa użytkownika" // Warunkowe renderowanie pola dla nazwy użytkownika
+          type="text"
+          variant="outlined"
+          required={isSignUpActive} // Pole wymagane tylko przy rejestracji
+          fullWidth
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          sx={{ mt: 2, display: isSignUpActive ? "flex" : "none" }} // Ukryj pole, gdy logowanie
+        />
+        <TextField
           label="Email"
           type="email"
           variant="outlined"
@@ -142,7 +166,13 @@ export const Login = ({ user }) => {
         </Button>
         <Button
           variant="outlined"
-          startIcon={<img src={GoogleIconSVG} alt="Google" style={{ width: 20, height: 20 }} />}
+          startIcon={
+            <img
+              src={GoogleIconSVG}
+              alt="Google"
+              style={{ width: 20, height: 20 }}
+            />
+          }
           onClick={handleGoogleSignIn}
           sx={{
             mt: 2,
