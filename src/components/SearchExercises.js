@@ -22,6 +22,13 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
     fetchExercisesData();
   }, []);
 
+  const scrollToExercises = () => {
+    const exercisesSection = document.getElementById("exercises");
+    if (exercisesSection) {
+      exercisesSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleSearch = async () => {
     if (search) {
       const exercisesData = await fetchData(
@@ -37,6 +44,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
       );
       setSearch("");
       setExercises(searchedExercises);
+      scrollToExercises();
     }
   };
 

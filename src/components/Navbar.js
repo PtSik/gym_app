@@ -12,11 +12,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Logo from "../assets/images/logo2.png";
 import DefaultAvatar from "../assets/icons/avatar.png";
 
 const Navbar = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery('(min-width:1600px)');
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -105,62 +109,63 @@ const Navbar = () => {
               <MUIAvatar
                 src={auth.currentUser.photoURL || DefaultAvatar}
                 alt="avatar"
-                sx={{ width: 58, height: 58, mr: -8, mt: -1 }}
+                sx={{ width: 58, height: 58, mr: matches ? -7.5 : 0, mt: -1 }}
               />
             </IconButton>
             <Menu
-  anchorEl={anchorEl}
-  open={open}
-  onClose={handleClose}
-  sx={{
-    "& .MuiPaper-root": {
-      minWidth: "180px", // Zwiększona szerokość menu
-      borderRadius: 2,
-      color: "#000",
-      backgroundColor: "white",
-    },
-  }}
-  MenuListProps={{
-    "aria-labelledby": "basic-button",
-  }}
->
-  <Typography
-    color="textPrimary"
-    sx={{
-      fontWeight: "bold",
-      color: "#000",
-      textAlign: "center",
-      mt: 1.5,
-      mb: 1.5,
-      fontSize: "1.25rem"
-    }}
-  >
-    {auth.currentUser.displayName}
-  </Typography>
-  {/* Użycie Box do wypośrodkowania przycisku */}
-  <MenuItem
-    onClick={() => {
-      navigate("/profile");
-      handleClose();
-    }}
-    sx={{ justifyContent: 'center' }} // Centrowanie MenuItem
-  >
-    <Box sx={{ textAlign: 'center', width: 'auto' }}>Moje konto</Box>
-  </MenuItem>
-  <MenuItem
-    onClick={handleSignOut}
-    sx={{ justifyContent: 'center' }} // Centrowanie MenuItem
-  >
-    <Box sx={{ textAlign: 'center', width: 'auto' }}>Wyloguj</Box>
-  </MenuItem>
-</Menu>
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              sx={{
+                "& .MuiPaper-root": {
+                  minWidth: "180px",
+                  borderRadius: 2,
+                  color: "#000",
+                  backgroundColor: "white",
+                },
+              }}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <Typography
+                color="textPrimary"
+                sx={{
+                  fontWeight: "bold",
+                  color: "#000",
+                  textAlign: "center",
+                  mt: 1.5,
+                  mb: 1.5,
+                  fontSize: "1.25rem",
+                }}
+              >
+                {auth.currentUser.displayName}
+              </Typography>
+              <MenuItem
+                onClick={() => {
+                  navigate("/profile");
+                  handleClose();
+                }}
+                sx={{ justifyContent: "center" }}
+              >
+                <Box sx={{ textAlign: "center", width: "auto" }}>
+                  Moje konto
+                </Box>
+              </MenuItem>
+              <MenuItem
+                onClick={handleSignOut}
+                sx={{ justifyContent: "center" }}
+              >
+                <Box sx={{ textAlign: "center", width: "auto" }}>Wyloguj</Box>
+              </MenuItem>
+            </Menu>
           </>
         ) : (
           <Link to="/login">
             <MUIAvatar
               src={DefaultAvatar}
               alt="avatar"
-              sx={{ width: 58, height: 58, mr: -4 }}
+              sx={{ width: 58, height: 58, mr: matches ? -7.5 : 0 }}
             />
           </Link>
         )}

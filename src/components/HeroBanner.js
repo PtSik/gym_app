@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 import HeroBannerImage from "../assets/images/banner2.png";
 
 const HeroBanner = () => {
+  const matchesLarge = useMediaQuery('(min-width:1600px)');
+  const matchesMedium = useMediaQuery('(max-width:1360px)');
+
   const scrollToExercises = () => {
     const exercisesSection = document.getElementById("exercises");
     if (exercisesSection) {
@@ -46,31 +49,12 @@ const HeroBanner = () => {
           color: "white",
           borderRadius: "4px",
           '&:hover': {
-            backgroundColor: '#CC211E', // Lekko ciemniejszy odcień dla hover
+            backgroundColor: '#CC211E', 
           },
         }}
       >
         Eksploruj Ćwiczenia
       </Button>
-      {/* <Stack>
-        <a
-          href="#exercises"
-          style={{
-            marginTop: "45px",
-            textDecoration: "none",
-            width: "200px",
-            textAlign: "center",
-            background: "#FF2625",
-            padding: "14px",
-            fontSize: "22px",
-            textTransform: "none",
-            color: "white",
-            borderRadius: "4px",
-          }}
-        >
-          Eksploruj Ćwiczenia
-        </a>
-      </Stack> */}
       <Typography
         fontWeight={600}
         color="#ff2626"
@@ -84,7 +68,11 @@ const HeroBanner = () => {
       >
         TREN TWINS
       </Typography>
-      <img src={HeroBannerImage} alt="banner" className="hero-banner-img" />
+      <img
+        src={HeroBannerImage}
+        alt="banner"
+        className={matchesLarge ? "hero-banner-img" : "hero-banner-img-small"}
+      />
     </Box>
   );
 };

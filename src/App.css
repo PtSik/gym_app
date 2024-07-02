@@ -62,6 +62,30 @@ body {
   margin-top: -285px;
 }
 
+.hero-banner-img-small {
+  position: absolute;
+  right: 100px;
+  top: 0px;
+  width: 700px;
+  height: 910px;
+  margin-top: -365px;
+}
+
+@media (max-width: 1360px) {
+  .hero-banner-img, .hero-banner-img-small {
+    width: 540px; /* Mniejsza szerokość dla ekranów poniżej 1360px */
+    height:702px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-banner-img, .hero-banner-img-small {
+    display: none;
+  }
+}
+
+
+
 .exercise-card {
   width: 400px;
   height: 445px;
@@ -118,10 +142,6 @@ body {
   .left-arrow,
   .right-arrow {
     position: static !important;
-  }
-
-  .hero-banner-img {
-    display: none;
   }
 
   .exercise-card {
