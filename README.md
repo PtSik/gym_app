@@ -97,7 +97,8 @@ The Gym App is a comprehensive platform designed to manage various aspects of gy
 * [![React][React.js]][React-url]
 * [![Node][Node.js]][Node-url]
 * [![Express][Express.js]][Express-url]
-* [![MongoDB][MongoDB.js]][MongoDB-url]
+* [![MongoDB][MongoDB]][MongoDB-url]
+* [![Firebase][Firebase]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
