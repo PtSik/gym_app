@@ -94,10 +94,10 @@ The Gym App is a comprehensive platform designed to manage various aspects of gy
 
 ### Built With
 
-* [React.js](https://reactjs.org/)
-* [Node.js](https://nodejs.org/)
-* [Express.js](https://expressjs.com/)
-* [MongoDB](https://www.mongodb.com/)
+* [![React][React.js]][React-url]
+* [![Node][Node.js]][Node-url]
+* [![Express][Express.js]][Express-url]
+* [![MongoDB][MongoDB.js]][MongoDB-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -188,7 +188,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [@patrykgniewek9](https://x.com/patrykgniewek9) - patrykgniewek9@gmail.com
 
 Project Link: [https://github.com/PtSik/gym_app](https://github.com/PtSik/gym_app)
 
@@ -212,15 +212,25 @@ Project Link: [https://github.com/PtSik/gym_app](https://github.com/PtSik/gym_ap
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[contributors-url]: https://github.com/PtSik/gym_app/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
+[forks-url]: https://github.com/PtSik/gym_app/forks
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
+[stars-url]: https://github.com/PtSik/gym_app/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
+[issues-url]: https://github.com/PtSik/gym_app/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[license-url]: https://github.com/PtSik/gym_app/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://www.linkedin.com/in/patryk-gniewek-717046256/
 [product-screenshot]: images/screenshot.png
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Node.js]: https://img.shields.io/badge/Node.js-v1.2.6-green?style=for-the-badge&logo=node.js&logoColor=white
+[Node-url]: https://nodejs.org/en
+[Express.js]: https://img.shields.io/badge/Express.js-v4.17.13-blue?style=for-the-badge&logo=express&logoColor=white
+[Express-url]: https://expressjs.com/
+[MongoDB]: https://img.shields.io/badge/MongoDB-v5.0.3-green?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/
+[Firebase]: https://img.shields.io/badge/Firebase-v9.6.1-orange?style=for-the-badge&logo=firebase&logoColor=white
+[Firebase-url]: https://firebase.google.com/
