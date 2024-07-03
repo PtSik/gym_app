@@ -81,7 +81,11 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-The Gym App is a comprehensive platform designed to manage various aspects of gym operations including schedules, member information, and activity tracking. Whether you are a gym owner or a fitness enthusiast, this app aims to streamline your fitness management tasks.
+#ENG
+The Gym App is a versatile platform designed to manage various aspects of gym operations, such as schedules, member information, and activity tracking. Built with modern technologies like React, Node.js, Express, MongoDB, and Firebase, it provides a robust and scalable solution. Users can search for exercises, add them to favorites, and view related YouTube content, making fitness management and workout planning more efficient and engaging.
+
+#PL
+Aplikacja Gym App to wszechstronna platforma przeznaczona do zarządzania różnymi aspektami działalności siłowni, takimi jak harmonogramy, informacje o członkach i śledzenie aktywności. Zbudowana jest z użyciem nowoczesnych technologii, takich jak React, Node.js, Express, MongoDB i Firebase, co zapewnia solidne i skalowalne rozwiązanie. Użytkownicy mogą wyszukiwać ćwiczenia, dodawać je do ulubionych, a także przeglądać materiały na YouTube związane z danymi ćwiczeniami.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
